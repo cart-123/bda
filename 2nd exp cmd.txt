@@ -1,0 +1,17 @@
+hadoop fs -mkdir /dir1
+
+hadoop fs -touchz /dir1/1.text
+
+hadoop fs -ls /dir1
+
+hadoop fs -put C:\use\user\b.py /dir2   
+
+hadoop fs -rm /dir1/1.txt
+
+hadoop fs -mv /dir1/1.txt /dir2
+
+
+hadoop fs -tail /dir2
+
+
+Hadoop fs -du /dir2
