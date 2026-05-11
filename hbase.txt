@@ -1,0 +1,38 @@
+C:\hbase-2.2.5\conf\hbase-env.cmd 
+
+set JAVA_HOME=C:\Java\jdk-1.8 
+set HBASE_MANAGES_ZK=true 
+set HBASE_CLASSPATH=%HBASE_HOME%\lib\client-facing-thirdparty\*
+
+C:\hbase-2.2.5\conf\hbase-site.xml 
+• Replace the <configuration> section with: 
+<configuration> 
+  <property> 
+    <name>hbase.rootdir</name> 
+    <value>file:///C:/hbase-2.2.5/data</value> 
+  </property> 
+  <property> 
+<name>hbase.zookeeper.property.dataDir</name> 
+    <value>C:/hbase-2.2.5/zookeeper</value> 
+  </property> 
+  <property> 
+    <name>hbase.cluster.distributed</name> 
+<value>false</value> 
+  </property> 
+<property> 
+  <name>hbase.unsafe.stream.capability.enforce</name> 
+  <value>false</value> 
+</property> 
+</configuration>
+
+cd C:\hbase-2.2.5\bin 
+• Start HBase using: start-hbase.cmd
+In the same Command Prompt, open HBase shell:  hbase shell 
+
+create 'emp', 'personal_data'  
+put 'emp', '1', 'personal_data:name', 'raju' 
+put 'emp', '1', 'personal_data:city', 'hyderabad' 
+ 
+scan 'emp' 
+
+:http://localhost:16010 
