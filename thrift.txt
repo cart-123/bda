@@ -1,0 +1,18 @@
+
+thrift -version 
+
+lab.thrift
+service HBaseTest { 
+    void ping(), 
+    string getStatus() 
+}
+
+ thrift --gen py lab.thrift 
+
+dir gen-py\lab 
+
+ 
+hbase thrift start 
+
+ 
+
