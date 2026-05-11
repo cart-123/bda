@@ -1,0 +1,116 @@
+hive-site.xml inside hive/conf and pase the following code in it:  
+<?xml version="1.0"?>  
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>  
+<configuration>  
+  
+  <property>  
+    <name>javax.jdo.option.ConnectionURL</name>  
+    <value>jdbc:derby:C:/hive/metastore_db;create=true</value>  
+    <description>Derby database location on your local C drive</description>  
+  </property>  
+  
+  <property>   
+    <name>javax.jdo.option.ConnectionDriverName</name>   
+
+    <value>org.apache.derby.jdbc.EmbeddedDriver</value>   
+  </property>  
+  
+  <property>  
+    <name>javax.jdo.option.ConnectionUserName</name>  
+    <value>APP</value>  
+  </property>  
+  
+  <property>  
+    <name>javax.jdo.option.ConnectionPassword</name>  
+    <value>mine</value>  
+  </property>  
+  
+  <property>  
+    <name>datanucleus.identifier.schema</name>  
+    <value>APP</value>  
+  </property>  
+  
+  <property>  
+    <name>hive.metastore.schema.verification</name>  
+    <value>false</value>  
+  </property>  
+  
+  <property>  
+    <name>datanucleus.schema.autoCreateAll</name>  
+    <value>true</value>  
+  </property>  
+  
+  <property>  
+    <name>hive.metastore.warehouse.dir</name>  
+    <value>/user/hive/warehouse</value>  
+  </property>  
+  
+
+  <property>  
+    <name>hive.exec.scratchdir</name>  
+    <value>/tmp/hive</value>  
+  </property>  
+  
+  <property>  
+    <name>hive.exec.local.scratchdir</name>  
+    <value>C:/hive/scratchdir</value>  
+  </property>  
+  
+<property>  
+<name>hive.querylog.location</name>  
+<value>C:/hive/scratchdir</value>  
+</property>  
+<property>  
+<name>hive.scratch.dir.permission</name>  
+<value>733</value>  
+</property>  
+</configuration>  
+ 
+Step 8:  
+• Open Command Prompt.  
+• Navigate to:C:\hive\bin  
+• Execute the command:  
+hive --service schematool -dbType derby -initSchema –verbose 
+ 
+ 
+ 
+Step 9 Start Hadoop Services  
+ 
+• Open Command Prompt.  
+ 
+• Navigate to:C:\hadoop-3.3.0\sbin  
+ 
+• Start Hadoop services using:  
+ 
+start-dfs.cmd  
+start-yarn.cmd  
+ 
+Step 10: Start Derby Network Server 
+  
+• Open a new Command Prompt.  
+ 
+• Navigate to:C:\derby\bin  
+ 
+• Start the Derby server using the cmd:startNetworkServer -h 0.0.0.0 
+ 
+step 11:  
+ 
+• Open a new Command Prompt.  
+ 
+• Navigate to:C:\hive\bin  
+ 
+• Start Hive using the cmd:hive 
+ 
+ 
+
+• Execute the following Hive commands one by one:  
+ 
+▪ set hive.exec.mode.local.auto=true;  
+▪ CREATE DATABASE ipdir;  
+▪ SHOW DATABASES;  
+▪ USE ipdir;  
+▪ CREATE TABLE student(id int, name string, age int) ROW FORMAT DELIMITED 
+FIELDS  
+TERMINATED BY ',';  
+▪ INSERT INTO student VALUES (1, 'John Doe', 25);  
+▪ SELECT * FROM student;
